@@ -18,7 +18,7 @@
   
       ,"page1": {
           "title": "About Me",
-          "content": "This is where you put the contents of your About page. Like all your pages, it’s in Markdown format. . This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
+          "content": ". My name is Marcel Caraciolo, creator of runpandas. When I am not running or coding, I manage the bioinformatics team at the Genomika Einstein, a genetics molecular laboratory, and product manager for some laboratory management systems. Amateur runner, lover of Lego Architecture sets and passioned about productivity and agile techniques. .",
           "url": "https://corriporai.github.io/pandasrunner/about/",
           "relUrl": "/about/",
           "date": ""
