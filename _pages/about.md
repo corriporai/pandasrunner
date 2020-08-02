@@ -4,10 +4,6 @@ title: About Me
 permalink: /about/
 ---
 
-This is where you put the contents of your *About* page. Like all your pages, it's in [Markdown](https://guides.github.com/features/mastering-markdown/) format.
+![](https://i.imgur.com/EGtszQz.jpg "Running at the Corrida das Estacoes 2019 - Inverno")
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
-
-
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+My name is Marcel Caraciolo, creator of **[runpandas](https://github.com/corriporai/runpandas)**. When I am not running or coding, I manage the bioinformatics team at the Genomika Einstein, a  genetics molecular laboratory, and product manager for some laboratory management systems. Amateur runner, lover of Lego Architecture sets and passioned about productivity and agile techniques.
