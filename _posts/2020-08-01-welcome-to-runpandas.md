@@ -3,7 +3,7 @@ toc: false
 layout: post
 description: Saying hello to runpandas! Brief presentation and motivation to getting started.
 categories: [general]
-image: images/pandalogo.jpg
+image: images/pandalogo.png
 title: Welcome to runpandas
 comments: true
 author: Marcel Caraciolo
@@ -21,7 +21,7 @@ Limiting to range of data science open-source packages available, there is only 
 As a possible alternative, runpandas package comes as a set of utilities to import sports data from GPS-enabled devices or even track activities applications, and, after careful processing,
 organises them in data frames which can provide information about the units of measurement (e.g. distance and speed units) as well of any data operations that have been carried out (e.g., personal best records, heart efforts, elevation gain). Runpandas extends the datatypes used by pandas, so it can benefit its core operations for the handling of measurement units and for summarising and visualising tracking data.
 
-![]({{ site.baseurl }}/images/pandalogo.jpg "runpandas' logo")
+![]({{ site.baseurl }}/images/pandalogo.png "runpandas' logo")
 
 
 ## Real motivation behind runpandas
