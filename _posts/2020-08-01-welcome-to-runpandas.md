@@ -35,7 +35,7 @@ Don't get me wrong, I am huge fan and user of several running apps, but sometime
 
 If you read until here, it is probably because you are interested at runpandas or the possibilities of performing your own analysis. I will give you some options:
 
-- If you want to check the documentation for more details on using `runpandas`: [Read the Docs](http://runpandas.readthedocs.io/en/latest/)
+- If you want to check the documentation for more details on using `runpandas`: [Read the Docs](https://www.runpandas.run/en/latest/)
 - If you already know the library, and want to contribute: [Github](https://github.com/corriporai/runpandas)
 - You are just a curious or a runner, and wants to see the some examples:
 - Another introduction to `runpandas` is my undergoing book **Analysing your own running data with Python** on Jupyter notebooks: 
