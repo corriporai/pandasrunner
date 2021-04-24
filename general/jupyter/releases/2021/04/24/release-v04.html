@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Release 0.4.0 with new running metrics and examples package! | runpandas tech blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Release 0.4.0 with new running metrics and examples package!" />
+<meta name="author" content="Marcel Caraciolo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="New release of runpandas comes with new features and improved docs!" />
+<meta property="og:description" content="New release of runpandas comes with new features and improved docs!" />
+<link rel="canonical" href="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/04/24/release-v04.html" />
+<meta property="og:url" content="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/04/24/release-v04.html" />
+<meta property="og:site_name" content="runpandas tech blog" />
+<meta property="og:image" content="https://corriporai.github.io/pandasrunner/images/cardio-climbing.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-24T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Marcel Caraciolo"},"description":"New release of runpandas comes with new features and improved docs!","@type":"BlogPosting","headline":"Release 0.4.0 with new running metrics and examples package!","dateModified":"2021-04-24T00:00:00-05:00","url":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/04/24/release-v04.html","datePublished":"2021-04-24T00:00:00-05:00","image":"https://corriporai.github.io/pandasrunner/images/cardio-climbing.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/04/24/release-v04.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/pandasrunner/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://corriporai.github.io/pandasrunner/feed.xml" title="runpandas tech blog" /><link rel="shortcut icon" type="image/x-icon" href="/pandasrunner/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Release 0.4.0 with new running metrics and examples package! | runpandas tech blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Release 0.4.0 with new running metrics and examples package!" />
+<meta name="author" content="Marcel Caraciolo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="New release of runpandas comes with new features and improved docs!" />
+<meta property="og:description" content="New release of runpandas comes with new features and improved docs!" />
+<link rel="canonical" href="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/04/24/release-v04.html" />
+<meta property="og:url" content="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/04/24/release-v04.html" />
+<meta property="og:site_name" content="runpandas tech blog" />
+<meta property="og:image" content="https://corriporai.github.io/pandasrunner/images/cardio-climbing.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-24T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Marcel Caraciolo"},"description":"New release of runpandas comes with new features and improved docs!","@type":"BlogPosting","headline":"Release 0.4.0 with new running metrics and examples package!","dateModified":"2021-04-24T00:00:00-05:00","url":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/04/24/release-v04.html","datePublished":"2021-04-24T00:00:00-05:00","image":"https://corriporai.github.io/pandasrunner/images/cardio-climbing.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/04/24/release-v04.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://corriporai.github.io/pandasrunner/feed.xml" title="runpandas tech blog" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/pandasrunner/">runpandas tech blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/pandasrunner/about/">About Me</a><a class="page-link" href="/pandasrunner/search/">Search</a><a class="page-link" href="/pandasrunner/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Release 0.4.0 with new running metrics and examples package!</h1><p class="page-description">New release of runpandas comes with new features and improved docs!</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-04-24T00:00:00-05:00" itemprop="datePublished">
+        Apr 24, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Marcel Caraciolo</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#general">general</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#releases">releases</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/corriporai/pandasrunner/tree/master/_notebooks/2021-04-24-release-v04.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/pandasrunner/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/corriporai/pandasrunner/master?filepath=_notebooks%2F2021-04-24-release-v04.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/pandasrunner/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/corriporai/pandasrunner/blob/master/_notebooks/2021-04-24-release-v04.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/pandasrunner/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-04-24-release-v04.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>This  current state of the project is <code>early beta</code>, which means that features can be added, removed or changed in backwards incompatible ways.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It has beeen a while since our last release, this is because we are working hard in new features in our new release of <a href="https://pypi.org/project/runpandas/">RunPandas 0.4</a>. Let's highlight them:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>The Activity now provides extra running statistics such as Vertical Altitude Speed (VAM), mean speed, mean pace, gradient, and mean heart rate.</li>
+<li>Now we provide in our <code>runpandas.MeasureSeries</code> the capability of conversions such as distance conversion (km - miles), latitudes and longitudes (degrees - radians) and pace conversion (min/km and min/mile).</li>
+<li>There is an auxiliar package for loading activity examples for testing and demo purposes:  <code>runpandas.datasets</code> . The goal is to enrich with several real examples in FIT, GPX and TCX format files.</li>
+<li>Finally, there is a CI workflow for uploading automatically a package to Pypi after release.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-Runpandas?">What is Runpandas?<a class="anchor-link" href="#What-is-Runpandas?"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Runpandas is a python package based on <code>pandas</code> data analysis library, that makes it easier to perform data analysis from your running sessions stored at tracking files from cellphones and GPS smartwatches or social sports applications such as Strava, MapMyRUn, NikeRunClub, etc. It is designed to enable reading, transforming and running metrics analytics from several tracking files and apps.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Main-Features">Main Features<a class="anchor-link" href="#Main-Features"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Support-to-some-new-running-metrics-such-as-mean-pace-and-mean-speed.">Support to some new running metrics such as mean pace and mean speed.<a class="anchor-link" href="#Support-to-some-new-running-metrics-such-as-mean-pace-and-mean-speed."> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First let's explain the differences between mean pace and mean speed.  Although both values express similar information, they are the reverse of each other. The Pace is how much time you need to cover a particular distance, while speed is an indicator of the number of meters you are able to cover within one second. These values can be presented different, depending on the measure units  used to express these metrics. Pace is given in unit of time per unit of distance, whereas speed is distance over time.</p>
+<p>The formulas are:</p>
+<p><code>Speed (m/s) = distance (m) / time (s)</code></p>
+<p><code>Pace (s/m) = time (sec) / distance (m)</code></p>
+<p>We provide in runpandas new acessors (<code>runpandas.acessors</code>) for computing those metrics:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Disable Warnings for a better visualization</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># !pip install runpandas</span>
+<span class="kn">import</span> <span class="nn">runpandas</span> <span class="k">as</span> <span class="nn">rpd</span>
+<span class="n">activity</span> <span class="o">=</span> <span class="n">rpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;./data/sample.tcx&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#compute the distance using haversine formula between two consecutive latitude, longitudes observations.</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;distpos&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">distance</span><span class="p">()</span>
+<span class="c1">#compute the speed normalized per interval.</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">from_distances</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>time
+00:00:00         NaN
+00:00:01    0.333146
+00:00:06    0.335758
+00:00:12    1.939984
+00:00:16    2.295962
+Name: speed, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean speed m/s:&#39;</span><span class="p">,</span> <span class="n">activity</span><span class="o">.</span><span class="n">mean_speed</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean pace s/m:&#39;</span><span class="p">,</span>  <span class="n">activity</span><span class="o">.</span><span class="n">mean_pace</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Mean speed m/s: 2.3545989706029533
+Mean pace s/m: 0 days 00:00:00.424701
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Generally this is shown in different units like speed (km/h) and pace (min/km):</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#convert m/s to km/h by multiplying the factor of 3.6</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean speed km/h:&#39;</span><span class="p">,</span> <span class="n">activity</span><span class="o">.</span><span class="n">mean_speed</span><span class="p">()</span> <span class="o">*</span> <span class="mf">3.6</span><span class="p">)</span>
+
+<span class="c1">#We define a auxiliar function to convert the pace from sec/m to min/km:</span>
+<span class="k">def</span> <span class="nf">convert_pace_secmeters2minkms</span><span class="p">(</span><span class="n">seconds</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">Timedelta</span>
+    <span class="n">pace_min</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">seconds</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="n">pace_sec</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">seconds</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">-</span> <span class="p">(</span><span class="n">pace_min</span> <span class="o">*</span> <span class="mi">60</span><span class="p">))</span>
+    <span class="n">total_seconds</span> <span class="o">=</span> <span class="p">(</span><span class="n">pace_min</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span> <span class="o">+</span> <span class="n">pace_sec</span>
+    <span class="k">return</span> <span class="n">Timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">total_seconds</span><span class="p">)</span>
+
+<span class="n">pace_min_km</span> <span class="o">=</span> <span class="n">convert_pace_secmeters2minkms</span><span class="p">(</span><span class="n">activity</span><span class="o">.</span><span class="n">mean_pace</span><span class="p">()</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean pace min/km:&#39;</span><span class="p">,</span> <span class="n">pace_min_km</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Mean speed km/h: 8.476556294170631
+Mean pace min/km: 0 days 00:07:04
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Support-to-gradient-and-vertical-speed.">Support to gradient and vertical speed.<a class="anchor-link" href="#Support-to-gradient-and-vertical-speed."> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Gradient is a measure of the route steepness-the magnitude of its incline or slope as compared to the horizontal. Most often presented as a percentage, the gradient of a climb will normally fall somewhere between 3-15 percent. For practical use, it is usually used for estimating the difficulty of the climb during the route.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Gradient computed through the distance points</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;grad&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">gradient</span><span class="p">()</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;grad&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>time
+00:00:00         NaN
+00:00:01         NaN
+00:00:06    0.000000
+00:00:12   -0.121218
+00:00:16    0.000000
+              ...   
+00:32:51    0.028739
+00:32:56   -0.028715
+00:33:02   -0.042557
+00:33:07   -0.051672
+00:33:11   -0.097842
+Name: grad, Length: 383, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>VAM (Vertical Altitude Speed) similar to speed except it tracks how fast you go up vertically rather than horizontally between two points. While speed is measured in miles or kilometers per hour, VAM is measured in vertical meters per hour (vmh). It tells you how many meters you would climb if you went up a moderate grade for an hour.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Vertical Altitude Speed (VAM) in m/s</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;vam&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">vertical_speed</span><span class="p">()</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;vam&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>time
+00:00:00         NaN
+00:00:01    0.000000
+00:00:06    0.000000
+00:00:12   -0.240336
+00:00:16    0.000000
+              ...   
+00:32:51    0.096118
+00:32:56   -0.096118
+00:33:02   -0.160217
+00:33:07   -0.192285
+00:33:11   -0.360504
+Name: vam, Length: 383, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Support-to-other-metrics-such-as-mean-heart_pace">Support to other metrics such as mean heart_pace<a class="anchor-link" href="#Support-to-other-metrics-such-as-mean-heart_pace"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Meart heart rate through the activity</span>
+<span class="s1">&#39;bpm&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">activity</span><span class="o">.</span><span class="n">mean_heart_rate</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(&#39;bpm&#39;, 156)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Some-conversion-functions-available-for-measure-metrics">Some conversion functions available for measure metrics<a class="anchor-link" href="#Some-conversion-functions-available-for-measure-metrics"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#convert the speed m/s to km/h</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">kph</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>time
+00:00:00          NaN
+00:00:01     1.199325
+00:00:06     1.208731
+00:00:12     6.983941
+00:00:16     8.265462
+              ...    
+00:32:51    11.864734
+00:32:56    12.001946
+00:33:02    13.600020
+00:33:07    13.428554
+00:33:11    13.155589
+Name: speed, Length: 383, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#gradient converted from degrees to percent</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;grad&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pct</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>time
+00:00:00          NaN
+00:00:01          NaN
+00:00:06     0.000000
+00:00:12   -12.121772
+00:00:16     0.000000
+              ...    
+00:32:51     2.873890
+00:32:56    -2.871543
+00:33:02    -4.255745
+00:33:07    -5.167165
+00:33:11    -9.784157
+Name: grad, Length: 383, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Total Altitude descent and ascent</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ascent&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">activity</span><span class="p">[</span><span class="s1">&#39;alt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ascent</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Descent&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">activity</span><span class="p">[</span><span class="s1">&#39;alt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">descent</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ascent 153.80981445000006
+Descent -166.30712890300006
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#distance from meters to kms</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">km</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>time
+00:00:00    0.000000
+00:00:01    0.000000
+00:00:06    0.001107
+00:00:12    0.013003
+00:00:16    0.022405
+              ...   
+00:32:51    4.613642
+00:32:56    4.630378
+00:33:02    4.652966
+00:33:07    4.671573
+00:33:11    4.686311
+Name: dist, Length: 383, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="An-example-activities-package-including-several-real-word-activities-from-different-formats.">An example activities package including several real word activities from different formats.<a class="anchor-link" href="#An-example-activities-package-including-several-real-word-activities-from-different-formats."> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The runpandas package also comes with extra batteries, such as our <code>runpandas.datasets package</code>, which includes a range of example data for testing purposes. There is a dedicated repository with all the data available. An index of the data is kept here.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">example_fit</span> <span class="o">=</span> <span class="n">rpd</span><span class="o">.</span><span class="n">activity_examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;Garmin_Fenix_6S_Pro-Running.fit&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_fit</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Included metrics:&#39;</span><span class="p">,</span> <span class="n">example_fit</span><span class="o">.</span><span class="n">included_data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Synced from watch Garmin Fenix 6S
+
+Included metrics: [&lt;MetricsEnum.latitude: &#39;latitude&#39;&gt;, &lt;MetricsEnum.longitude: &#39;longitude&#39;&gt;, &lt;MetricsEnum.elevation: &#39;elevation&#39;&gt;, &lt;MetricsEnum.heartrate: &#39;heartrate&#39;&gt;, &lt;MetricsEnum.cadence: &#39;cadence&#39;&gt;, &lt;MetricsEnum.distance: &#39;distance&#39;&gt;, &lt;MetricsEnum.temperature: &#39;temperature&#39;&gt;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">example_fit</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>enhanced_speed</th>
+      <th>enhanced_altitude</th>
+      <th>unknown_87</th>
+      <th>fractional_cadence</th>
+      <th>lap</th>
+      <th>session</th>
+      <th>unknown_108</th>
+      <th>dist</th>
+      <th>cad</th>
+      <th>hr</th>
+      <th>lon</th>
+      <th>lat</th>
+      <th>temp</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>00:00:00</th>
+      <td>0.000</td>
+      <td>254.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td>0</td>
+      <td>101</td>
+      <td>13.843376</td>
+      <td>51.066280</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>00:00:01</th>
+      <td>0.000</td>
+      <td>254.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td>0</td>
+      <td>101</td>
+      <td>13.843374</td>
+      <td>51.066274</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>00:00:10</th>
+      <td>1.698</td>
+      <td>254.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2362.0</td>
+      <td>0.00</td>
+      <td>83</td>
+      <td>97</td>
+      <td>13.843176</td>
+      <td>51.066249</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>00:00:12</th>
+      <td>2.267</td>
+      <td>254.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2362.0</td>
+      <td>3.95</td>
+      <td>84</td>
+      <td>99</td>
+      <td>13.843118</td>
+      <td>51.066250</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>00:00:21</th>
+      <td>2.127</td>
+      <td>254.6</td>
+      <td>0</td>
+      <td>0.5</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2552.0</td>
+      <td>16.67</td>
+      <td>87</td>
+      <td>100</td>
+      <td>13.842940</td>
+      <td>51.066231</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In case of you just only want to see all the activities in a specific file type , you can filter the <code>runpandas.activities_examples</code>, which returns a filter iterable that you can iterate over:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fit_examples</span> <span class="o">=</span> <span class="n">rpd</span><span class="o">.</span><span class="n">activity_examples</span><span class="p">(</span><span class="n">file_type</span><span class="o">=</span><span class="n">rpd</span><span class="o">.</span><span class="n">FileTypeEnum</span><span class="o">.</span><span class="n">FIT</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">fit_examples</span><span class="p">:</span>
+    <span class="c1">#Download and play with the filtered examples</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>https://raw.githubusercontent.com/corriporai/runpandas-data/master/activities/Garmin_Fenix_6S_Pro-Running.fit
+https://raw.githubusercontent.com/corriporai/runpandas-data/master/activities/Garmin_Fenix2_running_with_hrm.fit
+https://raw.githubusercontent.com/corriporai/runpandas-data/master/activities/Garmin_Forerunner_910XT-Running.fit
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-coming-next-?">What is coming next ?<a class="anchor-link" href="#What-is-coming-next-?"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Working hard in advanced running metrics such as power , heart rate zones and the feature of printing the summary of the activity with the main statistics.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Thanks">Thanks<a class="anchor-link" href="#Thanks"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are constantly developing Runpandas improving its existing features and adding new ones. We will be glad to hear from you about what you like or don’t like, what features you may wish to see in upcoming releases. Please feel free to contact us.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="corriporai/pandasrunner"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/pandasrunner/general/jupyter/releases/2021/04/24/release-v04.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/pandasrunner/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/pandasrunner/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/pandasrunner/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Our tech blog about runpandas features and examples for running tracking analysis with python and pandas.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/corriporai" title="corriporai"><svg class="svg-icon grey"><use xlink:href="/pandasrunner/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/marcelcaraciolo" title="marcelcaraciolo"><svg class="svg-icon grey"><use xlink:href="/pandasrunner/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
