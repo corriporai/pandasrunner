@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Release 0.4.1 powered by heart zone metrics! | runpandas tech blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Release 0.4.1 powered by heart zone metrics!" />
+<meta name="author" content="Marcel Caraciolo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="New release of runpandas comes with heart training zone metrics and minor changes to the CI build actions." />
+<meta property="og:description" content="New release of runpandas comes with heart training zone metrics and minor changes to the CI build actions." />
+<link rel="canonical" href="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/05/28/release-v041.html" />
+<meta property="og:url" content="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/05/28/release-v041.html" />
+<meta property="og:site_name" content="runpandas tech blog" />
+<meta property="og:image" content="https://corriporai.github.io/pandasrunner/images/trainingpeaks.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-28T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Marcel Caraciolo"},"description":"New release of runpandas comes with heart training zone metrics and minor changes to the CI build actions.","@type":"BlogPosting","headline":"Release 0.4.1 powered by heart zone metrics!","dateModified":"2021-05-28T00:00:00-05:00","datePublished":"2021-05-28T00:00:00-05:00","image":"https://corriporai.github.io/pandasrunner/images/trainingpeaks.png","url":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/05/28/release-v041.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/05/28/release-v041.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/pandasrunner/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://corriporai.github.io/pandasrunner/feed.xml" title="runpandas tech blog" /><link rel="shortcut icon" type="image/x-icon" href="/pandasrunner/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Release 0.4.1 powered by heart zone metrics! | runpandas tech blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Release 0.4.1 powered by heart zone metrics!" />
+<meta name="author" content="Marcel Caraciolo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="New release of runpandas comes with heart training zone metrics and minor changes to the CI build actions." />
+<meta property="og:description" content="New release of runpandas comes with heart training zone metrics and minor changes to the CI build actions." />
+<link rel="canonical" href="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/05/28/release-v041.html" />
+<meta property="og:url" content="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/05/28/release-v041.html" />
+<meta property="og:site_name" content="runpandas tech blog" />
+<meta property="og:image" content="https://corriporai.github.io/pandasrunner/images/trainingpeaks.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-28T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Marcel Caraciolo"},"description":"New release of runpandas comes with heart training zone metrics and minor changes to the CI build actions.","@type":"BlogPosting","headline":"Release 0.4.1 powered by heart zone metrics!","dateModified":"2021-05-28T00:00:00-05:00","datePublished":"2021-05-28T00:00:00-05:00","image":"https://corriporai.github.io/pandasrunner/images/trainingpeaks.png","url":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/05/28/release-v041.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/05/28/release-v041.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://corriporai.github.io/pandasrunner/feed.xml" title="runpandas tech blog" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/pandasrunner/">runpandas tech blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/pandasrunner/about/">About Me</a><a class="page-link" href="/pandasrunner/search/">Search</a><a class="page-link" href="/pandasrunner/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Release 0.4.1 powered by heart zone metrics!</h1><p class="page-description">New release of runpandas comes with heart training zone metrics and minor changes to the CI build actions.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-05-28T00:00:00-05:00" itemprop="datePublished">
+        May 28, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Marcel Caraciolo</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#general">general</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#releases">releases</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/corriporai/pandasrunner/tree/master/_notebooks/2021-05-28-release-v041.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/pandasrunner/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/corriporai/pandasrunner/master?filepath=_notebooks%2F2021-05-28-release-v041.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/pandasrunner/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/corriporai/pandasrunner/blob/master/_notebooks/2021-05-28-release-v041.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/pandasrunner/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-05-28-release-v041.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>This  current state of the project is <code>early beta</code>, which means that features can be added, removed or changed in backwards incompatible ways.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We published this minor release with some new metrics and changes to better improve our build process. In this release of <a href="https://pypi.org/project/runpandas/">RunPandas 0.4.1</a>, we include:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>The Activity now provides some special methods in <code>runpandas.acessors</code> that computes the heart training zones for each record and the time spent for each training zone.</li>
+<li>We published for the first time our package to the <a href="https://anaconda.org/marcelcaraciolo/runpandas">Anaconda</a> scientific package repository.</li>
+<li>Finally, we have changed our CI build implementation from Travis CI to Github actions. Unfortunately, the Travis CI became highly limited to open-source projects, which resulted into several  builds to not run anymore due to lack of credits.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-Runpandas?">What is Runpandas?<a class="anchor-link" href="#What-is-Runpandas?"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Runpandas is a python package based on <code>pandas</code> data analysis library, that makes it easier to perform data analysis from your running sessions stored at tracking files from cellphones and GPS smartwatches or social sports applications such as Strava, MapMyRUn, NikeRunClub, etc. It is designed to enable reading, transforming and running metrics analytics from several tracking files and apps.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Main-Features">Main Features<a class="anchor-link" href="#Main-Features"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Support-to-heart-training-zones-metrics">Support to heart training zones metrics<a class="anchor-link" href="#Support-to-heart-training-zones-metrics"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now <code>runpandas</code> comes with useful methods to data runners who desires to explore their heart rate data and check the heart rate range variation and the respective training zones  or the time ellapsed through each training zone during the workout.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Disable Warnings for a better visualization</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">runpandas</span>
+<span class="n">activity</span> <span class="o">=</span> <span class="n">runpandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;./data/11km.tcx&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Start&#39;</span><span class="p">,</span> <span class="n">activity</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;End:&#39;</span><span class="p">,</span> <span class="n">activity</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">activity</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span> <span class="n">activity</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Start 0 days 00:00:00 End: 0 days 01:16:06
+-8.364486 -8.364462
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First, let's perform a QC evaluation on the data, to check if there's any invalid or missing data required for the analysis. As you can see in the cell below, there are 5 records with heart rate data missing. We will replace all these with the first HR sensor data available.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">group_hr</span> <span class="o">=</span> <span class="n">activity</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are nan records: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">group_hr</span><span class="p">)</span>
+
+<span class="c1">#There is 5 missing values in HR. Let&#39;s see the positions where they are placed in the frame.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">activity</span><span class="p">[</span><span class="n">activity</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()])</span>
+
+<span class="c1">#We will replace all NaN values with the first HR sensor data available</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">activity</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s1">&#39;hr&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total nan after fill:&#39;</span><span class="p">,</span> <span class="n">activity</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>There are nan records: 5
+          run_cadence         alt       dist  hr        lon       lat  \
+time                                                                    
+00:00:00          NaN  668.801819   0.000000 NaN -36.577568 -8.364486   
+00:00:07          NaN  668.714722   5.749573 NaN -36.577465 -8.364492   
+00:00:10          NaN  668.680603  11.615299 NaN -36.577423 -8.364470   
+00:00:12         83.0  668.639099  17.306795 NaN -36.577366 -8.364449   
+00:00:15         82.0  668.600464  22.672394 NaN -36.577312 -8.364429   
+
+             speed  
+time                
+00:00:00  0.000000  
+00:00:07  0.000000  
+00:00:10  0.000000  
+00:00:12  2.262762  
+00:00:15  2.317986  
+Total nan after fill: 0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's see how to add a column with the heart rate zone label to the data frame.  For this task, we will use the special method <code>runpandas.compute.heart_zone</code> . The parameters are the bins argument which contains the left and right bounds for each training zone and the labels argument corresponding to the zone labels</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">activity</span><span class="p">[</span><span class="s1">&#39;heartrate_zone&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">heart_zone</span><span class="p">(</span>
+                        <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Rest&quot;</span><span class="p">,</span> <span class="s2">&quot;Z1&quot;</span><span class="p">,</span> <span class="s2">&quot;Z2&quot;</span><span class="p">,</span> <span class="s2">&quot;Z3&quot;</span><span class="p">,</span> <span class="s2">&quot;Z4&quot;</span><span class="p">,</span> <span class="s2">&quot;Z5&quot;</span><span class="p">],</span>
+                    <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">129</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">184</span><span class="p">])</span>
+<span class="n">activity</span><span class="p">[</span><span class="s2">&quot;heartrate_zone&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>time
+01:15:54    Z4
+01:15:56    Z4
+01:16:00    Z4
+01:16:02    Z4
+01:16:06    Z4
+Name: heartrate_zone, dtype: category
+Categories (6, object): [Rest &lt; Z1 &lt; Z2 &lt; Z3 &lt; Z4 &lt; Z5]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To calculate the time in zone, there is also a special method <code>runpandas.compute.time_in_zone</code> which computes the time spent for each training zone.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">time_in_zone</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">time_in_zone</span><span class="p">(</span>
+                        <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Rest&quot;</span><span class="p">,</span> <span class="s2">&quot;Z1&quot;</span><span class="p">,</span> <span class="s2">&quot;Z2&quot;</span><span class="p">,</span> <span class="s2">&quot;Z3&quot;</span><span class="p">,</span> <span class="s2">&quot;Z4&quot;</span><span class="p">,</span> <span class="s2">&quot;Z5&quot;</span><span class="p">],</span>
+                    <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">129</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">184</span><span class="p">])</span>
+
+<span class="n">time_in_zone</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>hr_zone
+Rest   00:00:00
+Z1     00:04:10
+Z2     00:07:05
+Z3     00:31:45
+Z4     00:33:06
+Z5     00:00:00
+Name: time_diff, dtype: timedelta64[ns]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Anaconda-Package">Anaconda Package<a class="anchor-link" href="#Anaconda-Package"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We decided to publish our runpandas packages at one of the most popular pythonic scientific package repositories : <a href="https://www.anaconda.com/">Anaconda</a> . There are more millions data science packages published focusing on scientific areas.  In this release we published at the owner's package repository (<a href="https://anaconda.org/marcelcaraciolo/runpandas">https://anaconda.org/marcelcaraciolo/runpandas</a>), but the goal is to publish it at the conda-forge main repository.  We will work on this task to submit our package as a release candidate.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Changing-the-Build-script-to-suppor-the-Github-Actions">Changing the Build script to suppor the Github Actions<a class="anchor-link" href="#Changing-the-Build-script-to-suppor-the-Github-Actions"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since last year the CI/CD provider TravisCI started to put several limitations to their free tier quotes , specially to open-source projects with had a specific ammount of time-credits for builds. We understood that for them it was a big decision , because building open source products and maintain them is extremely difficult.  Since runpandas is a fully open source package, I decided to find other CI provider.</p>
+<p>Github Actions came to the rescue,  since it remains free for any open-source project hosted in Github. Finally, I moved in this release all the build scripts to the Github actions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/pandasrunner/images/copied_from_nb/./images/github-actions.png" alt="" />
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For further information about the Github Actions and see how it works, please check this <a href="https://github.com/features/actions">article</a> and this <a href="https://www.section.io/engineering-education/setting-up-cicd-for-python-packages-using-github-actions/">post</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-coming-next-?">What is coming next ?<a class="anchor-link" href="#What-is-coming-next-?"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The next releases will come with power metrics and support to the workout summary visualization. So stay tunned!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Thanks">Thanks<a class="anchor-link" href="#Thanks"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are constantly developing Runpandas improving its existing features and adding new ones. We will be glad to hear from you about what you like or don’t like, what features you may wish to see in upcoming releases. Please feel free to contact us.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="corriporai/pandasrunner"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/pandasrunner/general/jupyter/releases/2021/05/28/release-v041.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/pandasrunner/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/pandasrunner/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/pandasrunner/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Our tech blog about runpandas features and examples for running tracking analysis with python and pandas.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/corriporai" title="corriporai"><svg class="svg-icon grey"><use xlink:href="/pandasrunner/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/marcelcaraciolo" title="marcelcaraciolo"><svg class="svg-icon grey"><use xlink:href="/pandasrunner/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
