@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Release 0.5.0 with summary statistics and aggregation of multiple activities! | runpandas tech blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Release 0.5.0 with summary statistics and aggregation of multiple activities!" />
+<meta name="author" content="Marcel Caraciolo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="New release of runpandas comes with the summary statistics for one workout and the possibility of combining multiple activities into a single session container for advanced statistical analysis over a period of time." />
+<meta property="og:description" content="New release of runpandas comes with the summary statistics for one workout and the possibility of combining multiple activities into a single session container for advanced statistical analysis over a period of time." />
+<link rel="canonical" href="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/07/16/release050.html" />
+<meta property="og:url" content="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/07/16/release050.html" />
+<meta property="og:site_name" content="runpandas tech blog" />
+<meta property="og:image" content="https://corriporai.github.io/pandasrunner/images/metrics-runners.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-16T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Marcel Caraciolo"},"description":"New release of runpandas comes with the summary statistics for one workout and the possibility of combining multiple activities into a single session container for advanced statistical analysis over a period of time.","headline":"Release 0.5.0 with summary statistics and aggregation of multiple activities!","@type":"BlogPosting","dateModified":"2021-07-16T00:00:00-05:00","datePublished":"2021-07-16T00:00:00-05:00","image":"https://corriporai.github.io/pandasrunner/images/metrics-runners.png","url":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/07/16/release050.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/07/16/release050.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/pandasrunner/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://corriporai.github.io/pandasrunner/feed.xml" title="runpandas tech blog" /><link rel="shortcut icon" type="image/x-icon" href="/pandasrunner/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Release 0.5.0 with summary statistics and aggregation of multiple activities! | runpandas tech blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Release 0.5.0 with summary statistics and aggregation of multiple activities!" />
+<meta name="author" content="Marcel Caraciolo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="New release of runpandas comes with the summary statistics for one workout and the possibility of combining multiple activities into a single session container for advanced statistical analysis over a period of time." />
+<meta property="og:description" content="New release of runpandas comes with the summary statistics for one workout and the possibility of combining multiple activities into a single session container for advanced statistical analysis over a period of time." />
+<link rel="canonical" href="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/07/16/release050.html" />
+<meta property="og:url" content="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/07/16/release050.html" />
+<meta property="og:site_name" content="runpandas tech blog" />
+<meta property="og:image" content="https://corriporai.github.io/pandasrunner/images/metrics-runners.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-16T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Marcel Caraciolo"},"description":"New release of runpandas comes with the summary statistics for one workout and the possibility of combining multiple activities into a single session container for advanced statistical analysis over a period of time.","headline":"Release 0.5.0 with summary statistics and aggregation of multiple activities!","@type":"BlogPosting","dateModified":"2021-07-16T00:00:00-05:00","datePublished":"2021-07-16T00:00:00-05:00","image":"https://corriporai.github.io/pandasrunner/images/metrics-runners.png","url":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/07/16/release050.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2021/07/16/release050.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://corriporai.github.io/pandasrunner/feed.xml" title="runpandas tech blog" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/pandasrunner/">runpandas tech blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/pandasrunner/about/">About Me</a><a class="page-link" href="/pandasrunner/search/">Search</a><a class="page-link" href="/pandasrunner/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Release 0.5.0 with summary statistics and aggregation of multiple activities!</h1><p class="page-description">New release of runpandas comes with the summary statistics for one workout and the possibility of combining multiple activities into a single session container for advanced statistical analysis over a period of time.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-07-16T00:00:00-05:00" itemprop="datePublished">
+        Jul 16, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Marcel Caraciolo</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#general">general</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#releases">releases</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/corriporai/pandasrunner/tree/master/_notebooks/2021-07-16-release050.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/pandasrunner/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/corriporai/pandasrunner/master?filepath=_notebooks%2F2021-07-16-release050.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/pandasrunner/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/corriporai/pandasrunner/blob/master/_notebooks/2021-07-16-release050.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/pandasrunner/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-07-16-release050.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>This  current state of the project is <code>early beta</code>, which means that features can be added, removed or changed in backwards incompatible ways.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We published this major release with summary statistics for a single activity and the possibility of combining multiple workouts into a one multi-dimensional dataframe (season) , enabling other types of analysis, including historical performance over a period of time. In this release of <a href="https://pypi.org/project/runpandas/">RunPandas 0.5.0</a>, we include:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Now the Activity can be summarised through common summary statistics using the <code>runpandas.types.summary</code> method.</li>
+<li>We enable now the analysis over multiple activities by combining them into a single Activity. This results into new possibilities of aggregated analysis over a group of workouts.</li>
+<li>There is a new acessor  <code>runpandas.acessors.season</code> , that computes the running metrics through the combined activities.</li>
+<li>Finally, there is a <code>runpandas.types.session_summary</code>  method that includes summary statistics over the season (group) of activities.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-Runpandas?">What is Runpandas?<a class="anchor-link" href="#What-is-Runpandas?"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Runpandas is a python package based on <code>pandas</code> data analysis library, that makes it easier to perform data analysis from your running sessions stored at tracking files from cellphones and GPS smartwatches or social sports applications such as Strava, MapMyRUn, NikeRunClub, etc. It is designed to enable reading, transforming and running metrics analytics from several tracking files and apps.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Main-Features">Main Features<a class="anchor-link" href="#Main-Features"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Summary-statistics-for-a-single-workout">Summary statistics for a single workout<a class="anchor-link" href="#Summary-statistics-for-a-single-workout"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>runpandas</code> provides for the data runners the <code>runpandas.types.summary</code> method for the Activity dataframe. This methods computes the estimates of the total distance covered, the total duration, the time spent moving, and several averages metrics such as speed, pace, cadence, and heart rate, calculated based on total duration ot the time spent moving.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Disable Warnings for a better visualization</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#!pip install runpandas</span>
+<span class="kn">import</span> <span class="nn">runpandas</span> <span class="k">as</span> <span class="nn">rpd</span>
+<span class="n">activity</span> <span class="o">=</span> <span class="n">rpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;./data/sample.tcx&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">activity</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>alt</th>
+      <th>dist</th>
+      <th>hr</th>
+      <th>lon</th>
+      <th>lat</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>00:00:00</th>
+      <td>178.942627</td>
+      <td>0.000000</td>
+      <td>62</td>
+      <td>-79.093187</td>
+      <td>35.951880</td>
+    </tr>
+    <tr>
+      <th>00:00:01</th>
+      <td>178.942627</td>
+      <td>0.000000</td>
+      <td>62</td>
+      <td>-79.093184</td>
+      <td>35.951880</td>
+    </tr>
+    <tr>
+      <th>00:00:06</th>
+      <td>178.942627</td>
+      <td>1.106947</td>
+      <td>62</td>
+      <td>-79.093172</td>
+      <td>35.951868</td>
+    </tr>
+    <tr>
+      <th>00:00:12</th>
+      <td>177.500610</td>
+      <td>13.003035</td>
+      <td>62</td>
+      <td>-79.093228</td>
+      <td>35.951774</td>
+    </tr>
+    <tr>
+      <th>00:00:16</th>
+      <td>177.500610</td>
+      <td>22.405027</td>
+      <td>60</td>
+      <td>-79.093141</td>
+      <td>35.951732</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>00:32:51</th>
+      <td>170.290649</td>
+      <td>4613.641602</td>
+      <td>178</td>
+      <td>-79.093241</td>
+      <td>35.951341</td>
+    </tr>
+    <tr>
+      <th>00:32:56</th>
+      <td>169.810059</td>
+      <td>4630.377930</td>
+      <td>178</td>
+      <td>-79.093192</td>
+      <td>35.951486</td>
+    </tr>
+    <tr>
+      <th>00:33:02</th>
+      <td>168.848755</td>
+      <td>4652.966309</td>
+      <td>179</td>
+      <td>-79.093086</td>
+      <td>35.951671</td>
+    </tr>
+    <tr>
+      <th>00:33:07</th>
+      <td>167.887329</td>
+      <td>4671.572754</td>
+      <td>179</td>
+      <td>-79.093000</td>
+      <td>35.951824</td>
+    </tr>
+    <tr>
+      <th>00:33:11</th>
+      <td>166.445312</td>
+      <td>4686.311035</td>
+      <td>180</td>
+      <td>-79.093014</td>
+      <td>35.951954</td>
+    </tr>
+  </tbody>
+</table>
+<p>383 rows × 5 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#compute the common metrics for the running activity such as distance per position, speed, pace, etc.</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;distpos&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">distance</span><span class="p">()</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">from_distances</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">activity</span><span class="p">[</span><span class="s1">&#39;vam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">vertical_speed</span><span class="p">()</span>
+<span class="n">activity_only_moving</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">only_moving</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">activity_only_moving</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Session                           Running: 26-12-2012 21:29:53
+Total distance (meters)                                4686.31
+Total ellapsed time                            0 days 00:33:11
+Total moving time                              0 days 00:33:05
+Average speed (km/h)                                   8.47656
+Average moving speed (km/h)                            8.49853
+Average pace (per 1 km)                        0 days 00:07:04
+Average pace moving (per 1 km)                 0 days 00:07:03
+Average cadence                                            NaN
+Average moving cadence                                     NaN
+Average heart rate                                     156.653
+Average moving heart rate                                157.4
+Average temperature                                        NaN
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The result above is an object of  <code>pandas.Series</code> including the main running statistics from the workout.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Combining-multiple-activities-into-a-Grouped-Activity-Dataframe">Combining multiple activities into a Grouped Activity Dataframe<a class="anchor-link" href="#Combining-multiple-activities-into-a-Grouped-Activity-Dataframe"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>Runpandas</code> powered by pandas libraries comes with the <code>pandas.MultiIndex</code>, which allows the dataframe  have multiple columns as a row identifier, while having each index column related to another through a parent/child relationship. In our scenario we have the start time from each activity as the first index level and the timestamps from the activity as the second index level. This enables advanced statistical analysis acrosss one period of training sessions or over a period time.</p>
+<p>The code chunk below loads the data using the method <code>runpandas.read_directory_aggregate</code>, which allows the user to read all the tracking files of a support format in a directory and combine them in a data frame split by sessions based on the timestamps of each activity.  It means that for each workout file will be stored in separate lines in the dataframe.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">runpandas</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">runpandas</span><span class="o">.</span><span class="n">read_dir_aggregate</span><span class="p">(</span><span class="n">dirname</span><span class="o">=</span><span class="s1">&#39;./data/session/&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">session</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>alt</th>
+      <th>hr</th>
+      <th>lon</th>
+      <th>lat</th>
+    </tr>
+    <tr>
+      <th>start</th>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">2020-08-30 09:08:51.012</th>
+      <th>00:00:00</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.893609</td>
+      <td>-8.045055</td>
+    </tr>
+    <tr>
+      <th>00:00:01.091000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.893624</td>
+      <td>-8.045054</td>
+    </tr>
+    <tr>
+      <th>00:00:02.091000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.893641</td>
+      <td>-8.045061</td>
+    </tr>
+    <tr>
+      <th>00:00:03.098000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.893655</td>
+      <td>-8.045063</td>
+    </tr>
+    <tr>
+      <th>00:00:04.098000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.893655</td>
+      <td>-8.045065</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">2021-07-04 11:23:19.418</th>
+      <th>00:52:39.582000</th>
+      <td>0.050001</td>
+      <td>189.0</td>
+      <td>-34.894534</td>
+      <td>-8.046602</td>
+    </tr>
+    <tr>
+      <th>00:52:43.582000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.894465</td>
+      <td>-8.046533</td>
+    </tr>
+    <tr>
+      <th>00:52:44.582000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.894443</td>
+      <td>-8.046515</td>
+    </tr>
+    <tr>
+      <th>00:52:45.582000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.894429</td>
+      <td>-8.046494</td>
+    </tr>
+    <tr>
+      <th>00:52:49.582000</th>
+      <td>NaN</td>
+      <td>190.0</td>
+      <td>-34.894395</td>
+      <td>-8.046398</td>
+    </tr>
+  </tbody>
+</table>
+<p>48794 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">index</span>  <span class="c1">#MultiIndex (start, timestamp)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>MultiIndex([(&#39;2020-08-30 09:08:51.012000&#39;,        &#39;00:00:00&#39;),
+            (&#39;2020-08-30 09:08:51.012000&#39;, &#39;00:00:01.091000&#39;),
+            (&#39;2020-08-30 09:08:51.012000&#39;, &#39;00:00:02.091000&#39;),
+            (&#39;2020-08-30 09:08:51.012000&#39;, &#39;00:00:03.098000&#39;),
+            (&#39;2020-08-30 09:08:51.012000&#39;, &#39;00:00:04.098000&#39;),
+            (&#39;2020-08-30 09:08:51.012000&#39;, &#39;00:00:05.096000&#39;),
+            (&#39;2020-08-30 09:08:51.012000&#39;, &#39;00:00:06.096000&#39;),
+            (&#39;2020-08-30 09:08:51.012000&#39;, &#39;00:00:07.097000&#39;),
+            (&#39;2020-08-30 09:08:51.012000&#39;, &#39;00:00:08.097000&#39;),
+            (&#39;2020-08-30 09:08:51.012000&#39;, &#39;00:00:09.102000&#39;),
+            ...
+            (&#39;2021-07-04 11:23:19.418000&#39;, &#39;00:52:18.584000&#39;),
+            (&#39;2021-07-04 11:23:19.418000&#39;, &#39;00:52:22.584000&#39;),
+            (&#39;2021-07-04 11:23:19.418000&#39;, &#39;00:52:26.582000&#39;),
+            (&#39;2021-07-04 11:23:19.418000&#39;, &#39;00:52:30.582000&#39;),
+            (&#39;2021-07-04 11:23:19.418000&#39;, &#39;00:52:35.582000&#39;),
+            (&#39;2021-07-04 11:23:19.418000&#39;, &#39;00:52:39.582000&#39;),
+            (&#39;2021-07-04 11:23:19.418000&#39;, &#39;00:52:43.582000&#39;),
+            (&#39;2021-07-04 11:23:19.418000&#39;, &#39;00:52:44.582000&#39;),
+            (&#39;2021-07-04 11:23:19.418000&#39;, &#39;00:52:45.582000&#39;),
+            (&#39;2021-07-04 11:23:19.418000&#39;, &#39;00:52:49.582000&#39;)],
+           names=[&#39;start&#39;, &#39;time&#39;], length=48794)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Session-compute-metrics-methods">Session compute metrics methods<a class="anchor-link" href="#Session-compute-metrics-methods"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The package comes now with an acessor <code>runpandas.types.acessors.session._SessionAcessor</code> that holds special methods for computing the running metrics across all the activities. The calls delegate to the single activity metrics acessors.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#In this example we compute the distance and the distance per position across all workouts</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">distance</span><span class="p">()</span>
+<span class="n">session</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>alt</th>
+      <th>hr</th>
+      <th>lon</th>
+      <th>lat</th>
+      <th>distpos</th>
+      <th>dist</th>
+    </tr>
+    <tr>
+      <th>start</th>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">2020-08-30 09:08:51.012</th>
+      <th>00:00:00</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.893609</td>
+      <td>-8.045055</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>00:00:01.091000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.893624</td>
+      <td>-8.045054</td>
+      <td>1.690587</td>
+      <td>1.690587</td>
+    </tr>
+    <tr>
+      <th>00:00:02.091000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.893641</td>
+      <td>-8.045061</td>
+      <td>2.095596</td>
+      <td>3.786183</td>
+    </tr>
+    <tr>
+      <th>00:00:03.098000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.893655</td>
+      <td>-8.045063</td>
+      <td>1.594298</td>
+      <td>5.380481</td>
+    </tr>
+    <tr>
+      <th>00:00:04.098000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.893655</td>
+      <td>-8.045065</td>
+      <td>0.163334</td>
+      <td>5.543815</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">2021-07-04 11:23:19.418</th>
+      <th>00:52:39.582000</th>
+      <td>0.050001</td>
+      <td>189.0</td>
+      <td>-34.894534</td>
+      <td>-8.046602</td>
+      <td>12.015437</td>
+      <td>8220.018885</td>
+    </tr>
+    <tr>
+      <th>00:52:43.582000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.894465</td>
+      <td>-8.046533</td>
+      <td>10.749779</td>
+      <td>8230.768664</td>
+    </tr>
+    <tr>
+      <th>00:52:44.582000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.894443</td>
+      <td>-8.046515</td>
+      <td>3.163638</td>
+      <td>8233.932302</td>
+    </tr>
+    <tr>
+      <th>00:52:45.582000</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-34.894429</td>
+      <td>-8.046494</td>
+      <td>2.851535</td>
+      <td>8236.783837</td>
+    </tr>
+    <tr>
+      <th>00:52:49.582000</th>
+      <td>NaN</td>
+      <td>190.0</td>
+      <td>-34.894395</td>
+      <td>-8.046398</td>
+      <td>11.300740</td>
+      <td>8248.084577</td>
+    </tr>
+  </tbody>
+</table>
+<p>48794 rows × 6 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#comput the speed for each activity</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">from_distances</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#compute the pace for each activity</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">pace</span><span class="p">()</span>
+<span class="c1">#compute the inactivity periods for each activity</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">only_moving</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>How many activities are there in the activity ? There is a custom method <code>count</code> that returns the total number of activities in the season frame.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="s1">&#39;activities&#39;</span><span class="p">)</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>68 activities
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Session-summary-statistics">Session summary statistics<a class="anchor-link" href="#Session-summary-statistics"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>After the loading and metrics computation for all the activities, we now can load the basic summaries about the training sessions: time spent, total distance, mean speed and other insightful statistics for each running activity.  For this task, we may accomplish it by calling the method <code>runpandas.types.session._SessionAcessor.summarize</code> .  It will return a basic Dataframe including all the aggregated statistics per activity from the season frame.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">summarize</span><span class="p">()</span>
+<span class="n">summary</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>moving_time</th>
+      <th>mean_speed</th>
+      <th>max_speed</th>
+      <th>mean_pace</th>
+      <th>max_pace</th>
+      <th>mean_moving_speed</th>
+      <th>mean_moving_pace</th>
+      <th>mean_cadence</th>
+      <th>max_cadence</th>
+      <th>mean_moving_cadence</th>
+      <th>mean_heart_rate</th>
+      <th>max_heart_rate</th>
+      <th>mean_moving_heart_rate</th>
+      <th>mean_temperature</th>
+      <th>min_temperature</th>
+      <th>max_temperature</th>
+      <th>total_distance</th>
+      <th>ellapsed_time</th>
+    </tr>
+    <tr>
+      <th>start</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-07-03 09:50:53.162</th>
+      <td>00:25:29.838000</td>
+      <td>2.642051</td>
+      <td>4.879655</td>
+      <td>00:06:18</td>
+      <td>00:03:24</td>
+      <td>2.665008</td>
+      <td>00:06:15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>178.819923</td>
+      <td>188.0</td>
+      <td>178.872587</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4089.467333</td>
+      <td>00:25:47.838000</td>
+    </tr>
+    <tr>
+      <th>2020-07-05 09:33:20.999</th>
+      <td>00:05:04.999000</td>
+      <td>2.227637</td>
+      <td>6.998021</td>
+      <td>00:07:28</td>
+      <td>00:02:22</td>
+      <td>3.072098</td>
+      <td>00:05:25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>168.345455</td>
+      <td>176.0</td>
+      <td>168.900000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>980.162640</td>
+      <td>00:07:20.001000</td>
+    </tr>
+    <tr>
+      <th>2020-07-05 09:41:59.999</th>
+      <td>00:18:19</td>
+      <td>1.918949</td>
+      <td>6.563570</td>
+      <td>00:08:41</td>
+      <td>00:02:32</td>
+      <td>2.729788</td>
+      <td>00:06:06</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>173.894180</td>
+      <td>185.0</td>
+      <td>174.577143</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3139.401118</td>
+      <td>00:27:16</td>
+    </tr>
+    <tr>
+      <th>2020-07-13 09:13:58.718</th>
+      <td>00:40:21.281000</td>
+      <td>2.509703</td>
+      <td>8.520387</td>
+      <td>00:06:38</td>
+      <td>00:01:57</td>
+      <td>2.573151</td>
+      <td>00:06:28</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>170.808176</td>
+      <td>185.0</td>
+      <td>170.795527</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6282.491059</td>
+      <td>00:41:43.281000</td>
+    </tr>
+    <tr>
+      <th>2020-07-17 09:33:02.308</th>
+      <td>00:32:07.691000</td>
+      <td>2.643278</td>
+      <td>8.365431</td>
+      <td>00:06:18</td>
+      <td>00:01:59</td>
+      <td>2.643278</td>
+      <td>00:06:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>176.436242</td>
+      <td>186.0</td>
+      <td>176.436242</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5095.423045</td>
+      <td>00:32:07.691000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-06-13 09:22:30.985</th>
+      <td>01:32:33.018000</td>
+      <td>2.612872</td>
+      <td>23.583956</td>
+      <td>00:06:22</td>
+      <td>00:00:42</td>
+      <td>2.810855</td>
+      <td>00:05:55</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>169.340812</td>
+      <td>183.0</td>
+      <td>169.655879</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>15706.017295</td>
+      <td>01:40:11.016000</td>
+    </tr>
+    <tr>
+      <th>2021-06-20 09:16:55.163</th>
+      <td>00:59:44.512000</td>
+      <td>2.492640</td>
+      <td>6.065895</td>
+      <td>00:06:41</td>
+      <td>00:02:44</td>
+      <td>2.749453</td>
+      <td>00:06:03</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>170.539809</td>
+      <td>190.0</td>
+      <td>171.231392</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9965.168311</td>
+      <td>01:06:37.837000</td>
+    </tr>
+    <tr>
+      <th>2021-06-23 09:37:44.000</th>
+      <td>00:26:49.001000</td>
+      <td>2.501796</td>
+      <td>5.641343</td>
+      <td>00:06:39</td>
+      <td>00:02:57</td>
+      <td>2.568947</td>
+      <td>00:06:29</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>156.864865</td>
+      <td>171.0</td>
+      <td>156.957031</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4165.492241</td>
+      <td>00:27:45.001000</td>
+    </tr>
+    <tr>
+      <th>2021-06-27 09:50:08.664</th>
+      <td>00:31:42.336000</td>
+      <td>2.646493</td>
+      <td>32.734124</td>
+      <td>00:06:17</td>
+      <td>00:00:30</td>
+      <td>2.661853</td>
+      <td>00:06:15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>166.642857</td>
+      <td>176.0</td>
+      <td>166.721116</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5074.217061</td>
+      <td>00:31:57.336000</td>
+    </tr>
+    <tr>
+      <th>2021-07-04 11:23:19.418</th>
+      <td>00:47:47.583000</td>
+      <td>2.602263</td>
+      <td>4.212320</td>
+      <td>00:06:24</td>
+      <td>00:03:57</td>
+      <td>2.856801</td>
+      <td>00:05:50</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>177.821862</td>
+      <td>192.0</td>
+      <td>177.956967</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8248.084577</td>
+      <td>00:52:49.582000</td>
+    </tr>
+  </tbody>
+</table>
+<p>68 rows × 18 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Session Interval:&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_series</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">summary</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_series</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">.</span><span class="n">days</span><span class="p">,</span> <span class="s1">&#39;days&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total Workouts:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">summary</span><span class="p">),</span> <span class="s1">&#39;runnings&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Tota KM Distance:&#39;</span><span class="p">,</span> <span class="n">summary</span><span class="p">[</span><span class="s1">&#39;total_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average Pace (all runs):&#39;</span><span class="p">,</span> <span class="n">summary</span><span class="o">.</span><span class="n">mean_pace</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average Moving Pace (all runs):&#39;</span><span class="p">,</span> <span class="n">summary</span><span class="o">.</span><span class="n">mean_moving_pace</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average KM Distance (all runs):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">total_distance</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">/</span> <span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Session Interval: 366 days
+Total Workouts: 68 runnings
+Tota KM Distance: 491.77377537338896
+Average Pace (all runs): 0 days 00:07:18.411764
+Average Moving Pace (all runs): 0 days 00:06:02.147058
+Average KM Distance (all runs): 7.23
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we can see above, we analyzed the period of 366 days (one year) of running workouts. In this period, she ran 68 times which achieved the total distance of 491 km! The average moving pace is  06'02" per km and average distance of 7.23km!  Great numbers for a starter runner!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-coming-next-?">What is coming next ?<a class="anchor-link" href="#What-is-coming-next-?"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The next releases will focus on reading of Nike Run app workouts and support plugin for marathon results.  It will be awesome, keep tunned!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Thanks">Thanks<a class="anchor-link" href="#Thanks"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are constantly developing Runpandas improving its existing features and adding new ones. We will be glad to hear from you about what you like or don’t like, what features you may wish to see in upcoming releases. Please feel free to contact us.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="corriporai/pandasrunner"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/pandasrunner/general/jupyter/releases/2021/07/16/release050.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/pandasrunner/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/pandasrunner/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/pandasrunner/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Our tech blog about runpandas features and examples for running tracking analysis with python and pandas.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/corriporai" title="corriporai"><svg class="svg-icon grey"><use xlink:href="/pandasrunner/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/marcelcaraciolo" title="marcelcaraciolo"><svg class="svg-icon grey"><use xlink:href="/pandasrunner/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
