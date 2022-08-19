@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Release 0.5.2 improvements on support to Python 3.10 and new Pandas releases. Strava Client Authentication now integrated! | runpandas tech blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Release 0.5.2 improvements on support to Python 3.10 and new Pandas releases. Strava Client Authentication now integrated!" />
+<meta name="author" content="Marcel Caraciolo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="New release of runpandas comes with Python and Pandas new releases support and Strava Client Authentication tool now integrated." />
+<meta property="og:description" content="New release of runpandas comes with Python and Pandas new releases support and Strava Client Authentication tool now integrated." />
+<link rel="canonical" href="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2022/08/19/release-052.html" />
+<meta property="og:url" content="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2022/08/19/release-052.html" />
+<meta property="og:site_name" content="runpandas tech blog" />
+<meta property="og:image" content="https://corriporai.github.io/pandasrunner/images/runpandas_03.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-08-19T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Marcel Caraciolo"},"description":"New release of runpandas comes with Python and Pandas new releases support and Strava Client Authentication tool now integrated.","@type":"BlogPosting","headline":"Release 0.5.2 improvements on support to Python 3.10 and new Pandas releases. Strava Client Authentication now integrated!","dateModified":"2022-08-19T00:00:00-05:00","datePublished":"2022-08-19T00:00:00-05:00","url":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2022/08/19/release-052.html","image":"https://corriporai.github.io/pandasrunner/images/runpandas_03.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2022/08/19/release-052.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/pandasrunner/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://corriporai.github.io/pandasrunner/feed.xml" title="runpandas tech blog" /><link rel="shortcut icon" type="image/x-icon" href="/pandasrunner/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Release 0.5.2 improvements on support to Python 3.10 and new Pandas releases. Strava Client Authentication now integrated! | runpandas tech blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Release 0.5.2 improvements on support to Python 3.10 and new Pandas releases. Strava Client Authentication now integrated!" />
+<meta name="author" content="Marcel Caraciolo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="New release of runpandas comes with Python and Pandas new releases support and Strava Client Authentication tool now integrated." />
+<meta property="og:description" content="New release of runpandas comes with Python and Pandas new releases support and Strava Client Authentication tool now integrated." />
+<link rel="canonical" href="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2022/08/19/release-052.html" />
+<meta property="og:url" content="https://corriporai.github.io/pandasrunner/general/jupyter/releases/2022/08/19/release-052.html" />
+<meta property="og:site_name" content="runpandas tech blog" />
+<meta property="og:image" content="https://corriporai.github.io/pandasrunner/images/runpandas_03.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-08-19T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Marcel Caraciolo"},"description":"New release of runpandas comes with Python and Pandas new releases support and Strava Client Authentication tool now integrated.","@type":"BlogPosting","headline":"Release 0.5.2 improvements on support to Python 3.10 and new Pandas releases. Strava Client Authentication now integrated!","dateModified":"2022-08-19T00:00:00-05:00","datePublished":"2022-08-19T00:00:00-05:00","url":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2022/08/19/release-052.html","image":"https://corriporai.github.io/pandasrunner/images/runpandas_03.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://corriporai.github.io/pandasrunner/general/jupyter/releases/2022/08/19/release-052.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://corriporai.github.io/pandasrunner/feed.xml" title="runpandas tech blog" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/pandasrunner/">runpandas tech blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/pandasrunner/about/">About Me</a><a class="page-link" href="/pandasrunner/search/">Search</a><a class="page-link" href="/pandasrunner/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Release 0.5.2 improvements on support to Python 3.10 and new Pandas releases. Strava Client Authentication now integrated!</h1><p class="page-description">New release of runpandas comes with Python and Pandas new releases support and Strava Client Authentication tool now integrated.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-08-19T00:00:00-05:00" itemprop="datePublished">
+        Aug 19, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Marcel Caraciolo</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#general">general</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/pandasrunner/categories/#releases">releases</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/corriporai/pandasrunner/tree/master/_notebooks/2022-08-19-release-052.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/pandasrunner/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/corriporai/pandasrunner/master?filepath=_notebooks%2F2022-08-19-release-052.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/pandasrunner/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/corriporai/pandasrunner/blob/master/_notebooks/2022-08-19-release-052.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/pandasrunner/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-08-19-release-052.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>This  current state of the project is <code>early beta</code>, which means that features can be added, removed or changed in backwards incompatible ways.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We published this minor release with some bug fixes , new Python and Pandas releases support and Strava Client Authentication. In this release of <a href="https://pypi.org/project/runpandas/">RunPandas 0.5.2</a>, we include:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>CI now updated to include build tests with Python 3.9 and Python 3.10. It removed 3.6 Python official support.</li>
+<li>CI now  updated to include build tests with Pandas version 1.4.2 .</li>
+<li>Strava comes with social client authentication tool integrated. Thanks to contributor <a href="https://github.com/bitner">@bitner</a> !</li>
+<li>Fixes on Test suite and read the docs build suite.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-Runpandas?">What is Runpandas?<a class="anchor-link" href="#What-is-Runpandas?"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Runpandas is a python package based on <code>pandas</code> data analysis library, that makes it easier to perform data analysis from your running sessions stored at tracking files from cellphones and GPS smartwatches or social sports applications such as Strava, MapMyRUn, NikeRunClub, etc. It is designed to enable reading, transforming and running metrics analytics from several tracking files and apps.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Main-Features">Main Features<a class="anchor-link" href="#Main-Features"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to download the <a href="https://www.strava.com/">Strava</a> activities, you must authenticate your dev app through Strava servers in order to get a valid access token.  Previously, this task  had to be performed outside runpandas. Now Runpandas is powered with this handful tool, so you can easily can get the access token and store it locally , so you can use it as long as it doesn't expire it.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/pandasrunner/images/copied_from_nb/./images/getting-started-4.png" alt="" />
+    
+    
+</figure>
+</p>
+<p>Screenshot from the Strava Authentication Authorization WebSite</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="How-does-it-work-?">How does it work ?<a class="anchor-link" href="#How-does-it-work-?"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We load the environment variables from our terminal or use a .env file with the STRAVA social app personal access tokens. You can create your own using the link instructions here: <a href="https://developers.strava.com/">https://developers.strava.com/</a></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">runpandas</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Firstly, import the runpandas StravaClient, create a Client instance, and read in the client ID and secret loaded previously. Next the one time authentication. The command client.authenticate_web will open a browser with a URL for the athlete to use to approve access to their data from the app.</p>
+<p>The athlete is then prompted to log in to the Strava website and give consent to the requesting application. Once the user authorizes, it will store the access token and refresh token. From this point this access token, which lasts for 6 hours, will be what you need to access data. The client also save it locally so it can be re-read and refreshed as needed.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">runpandas</span><span class="o">.</span><span class="n">StravaClient</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">authenticate_web</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>problems on reading token.json file. It considers an empty file.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;access_token&#39;: &#39;e728378922ebe5e07371904c83771d18a716864f&#39;,
+ &#39;refresh_token&#39;: &#39;59c8537628a19d70330e5aca2ec5a558023a2c03&#39;,
+ &#39;expires_at&#39;: 1660964653}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As shown above, the activity now after loaded can be analysed as any other activity in runpandas!</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">activity</span> <span class="o">=</span> <span class="n">runpandas</span><span class="o">.</span><span class="n">read_strava</span><span class="p">(</span><span class="s1">&#39;7329257123&#39;</span><span class="p">)</span>
+<span class="n">activity</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Unable to set attribute media_type on entity &lt;ActivityPhotoPrimary id=None&gt;
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Session                           Running: 18-06-2022 07:08:07
+Total distance (meters)                                21389.8
+Total ellapsed time                            0 days 02:02:20
+Total moving time                              0 days 02:02:19
+Average speed (km/h)                                       NaN
+Average moving speed (km/h)                                NaN
+Average pace (per 1 km)                                    NaN
+Average pace moving (per 1 km)                             NaN
+Average cadence                                        87.7889
+Average moving cadence                                  87.847
+Average heart rate                                     155.674
+Average moving heart rate                              155.713
+Average temperature                                        NaN
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-coming-next-?">What is coming next ?<a class="anchor-link" href="#What-is-coming-next-?"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The next releases will focus on supporting marathon results and some plots support.  It will be awesome, keep tunned!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sorry">Sorry<a class="anchor-link" href="#Sorry"> </a></h2><p>Sorry for the long delay since the last release, I was kept busy working on other projects. But I will be more frequent here updating our favorite data running sports package!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Thanks">Thanks<a class="anchor-link" href="#Thanks"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are constantly developing Runpandas improving its existing features and adding new ones. We will be glad to hear from you about what you like or don’t like, what features you may wish to see in upcoming releases. Please feel free to contact us.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="corriporai/pandasrunner"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/pandasrunner/general/jupyter/releases/2022/08/19/release-052.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/pandasrunner/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/pandasrunner/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/pandasrunner/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Our tech blog about runpandas features and examples for running tracking analysis with python and pandas.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/corriporai" target="_blank" title="corriporai"><svg class="svg-icon grey"><use xlink:href="/pandasrunner/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/marcelcaraciolo" target="_blank" title="marcelcaraciolo"><svg class="svg-icon grey"><use xlink:href="/pandasrunner/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
